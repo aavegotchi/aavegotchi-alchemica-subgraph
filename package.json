@@ -1,0 +1,21 @@
+{
+  "name": "aavegotchi-alchemica-subgraph",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.30.2",
+    "@graphprotocol/graph-ts": "0.27.0",
+    "@openzeppelin/subgraphs": "^0.1.8"
+  },
+  "devDependencies": {
+    "@amxx/graphprotocol-utils": "^1.1.0"
+  }
+}
