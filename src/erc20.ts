@@ -66,12 +66,17 @@ export function handleTransfer(event: TransferEvent): void {
         );
         totalSupply.save();
     } else if (event.params.to == ADDRESS_BURN) {
-        contract.burnedExact = contract.burnedExact.plus(event.params.value);
-        contract.burned = decimals.toDecimals(
-            contract.burnedExact,
+        let burnAccount = fetchAccount(ADDRESS_BURN);
+        let burnedBalance = fetchERC20Balance(contract, burnAccount);
+
+        burnedBalance.valueExact = burnedBalance.valueExact.plus(
+            event.params.value
+        );
+        burnedBalance.value = decimals.toDecimals(
+            burnedBalance.valueExact,
             contract.decimals
         );
-        contract.save();
+        burnedBalance.save();
     } else {
         let to = fetchAccount(event.params.to);
         let balance = fetchERC20Balance(contract, to);

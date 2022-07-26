@@ -25,8 +25,6 @@ export function fetchERC20(address: Address): ERC20Contract {
         contract.name = name.reverted ? null : name.value;
         contract.symbol = symbol.reverted ? null : symbol.value;
         contract.decimals = decimals.reverted ? 18 : decimals.value;
-        contract.burned = BigDecimal.fromString("0");
-        contract.burnedExact = BigInt.fromI32(0);
         contract.totalSupply = fetchERC20Balance(
             contract as ERC20Contract,
             null

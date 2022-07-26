@@ -14,8 +14,7 @@ type ERC20Contract @entity(immutable: true) {
     name: String
     symbol: String
     decimals: Int!
-    burned: BigDecimal!
-    burnedExact: BigInt!
+    burned: ERC20Balance!
     totalSupply: ERC20Balance!
     balances: [ERC20Balance!]! @derivedFrom(field: "contract")
     approvals: [ERC20Approval!]! @derivedFrom(field: "contract")
