@@ -1,6 +1,6 @@
 import { Address, BigDecimal, BigInt } from "@graphprotocol/graph-ts";
 
-import { IERC20 } from "../../generated/erc20/IERC20";
+import { IERC20 } from "../../generated/kek/IERC20";
 
 import { constants } from "@amxx/graphprotocol-utils";
 
