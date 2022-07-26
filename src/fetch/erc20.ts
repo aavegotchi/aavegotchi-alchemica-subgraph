@@ -11,6 +11,7 @@ import {
     ERC20Balance,
     ERC20Approval,
 } from "../../generated/schema";
+import { ADDRESS_BURN } from "../constants";
 export function fetchERC20(address: Address): ERC20Contract {
     let contract = ERC20Contract.load(address);
 
@@ -28,6 +29,12 @@ export function fetchERC20(address: Address): ERC20Contract {
         contract.totalSupply = fetchERC20Balance(
             contract as ERC20Contract,
             null
+        ).id;
+
+        let burnAccount = fetchAccount(ADDRESS_BURN);
+        contract.burned = fetchERC20Balance(
+            contract as ERC20Contract,
+            burnAccount
         ).id;
         contract.asAccount = address;
         contract.save();
