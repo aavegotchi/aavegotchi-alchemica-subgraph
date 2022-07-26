@@ -1,18 +1,16 @@
-import { Address, BigInt } from "@graphprotocol/graph-ts";
-
-import {
-    Account,
-    ERC20Contract,
-    ERC20Balance,
-    ERC20Approval,
-} from "../../generated/schema";
+import { Address, BigDecimal, BigInt } from "@graphprotocol/graph-ts";
 
 import { IERC20 } from "../../generated/erc20/IERC20";
 
 import { constants } from "@amxx/graphprotocol-utils";
 
 import { fetchAccount } from "@openzeppelin/subgraphs/src/fetch/account";
-
+import {
+    Account,
+    ERC20Contract,
+    ERC20Balance,
+    ERC20Approval,
+} from "../../generated/schema";
 export function fetchERC20(address: Address): ERC20Contract {
     let contract = ERC20Contract.load(address);
 
@@ -27,7 +25,7 @@ export function fetchERC20(address: Address): ERC20Contract {
         contract.name = name.reverted ? null : name.value;
         contract.symbol = symbol.reverted ? null : symbol.value;
         contract.decimals = decimals.reverted ? 18 : decimals.value;
-        contract.burned = BigInt.fromI32(0);
+        contract.burned = BigDecimal.fromString("0");
         contract.burnedExact = BigInt.fromI32(0);
         contract.totalSupply = fetchERC20Balance(
             contract as ERC20Contract,

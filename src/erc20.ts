@@ -1,4 +1,4 @@
-import { ERC20Transfer } from "@openzeppelin/subgraphs/generated/schema";
+import { ERC20Transfer } from "../generated/schema";
 
 import {
     Transfer as TransferEvent,
@@ -12,7 +12,7 @@ import {
     transactions,
 } from "@amxx/graphprotocol-utils";
 
-import { fetchAccount } from "@openzeppelin/subgraphs/src/fetch/account";
+import { fetchAccount } from "./fetch/account";
 
 import {
     fetchERC20,
