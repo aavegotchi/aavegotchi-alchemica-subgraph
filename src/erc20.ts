@@ -55,17 +55,10 @@ export function handleTransfer(event: TransferEvent): void {
         ev.fromBalance = balance.id;
     }
 
-    if (event.params.to == constants.ADDRESS_ZERO) {
-        let totalSupply = fetchERC20Balance(contract, null);
-        totalSupply.valueExact = totalSupply.valueExact.minus(
-            event.params.value
-        );
-        totalSupply.value = decimals.toDecimals(
-            totalSupply.valueExact,
-            contract.decimals
-        );
-        totalSupply.save();
-    } else if (event.params.to == ADDRESS_BURN) {
+    if (
+        event.params.to == constants.ADDRESS_ZERO ||
+        event.params.to == ADDRESS_BURN
+    ) {
         let burnAccount = fetchAccount(ADDRESS_BURN);
         let burnedBalance = fetchERC20Balance(contract, burnAccount);
 
