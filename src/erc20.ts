@@ -18,7 +18,7 @@ import {
     fetchERC20,
     fetchERC20Balance,
     fetchERC20Approval,
-} from "@openzeppelin/subgraphs/src/fetch/erc20";
+} from "./fetch/erc20";
 import { ADDRESS_BURN } from "./constants";
 
 export function handleTransfer(event: TransferEvent): void {
@@ -55,10 +55,7 @@ export function handleTransfer(event: TransferEvent): void {
         ev.fromBalance = balance.id;
     }
 
-    if (
-        event.params.to == constants.ADDRESS_ZERO ||
-        event.params.to == ADDRESS_BURN
-    ) {
+    if (event.params.to == constants.ADDRESS_ZERO) {
         let totalSupply = fetchERC20Balance(contract, null);
         totalSupply.valueExact = totalSupply.valueExact.minus(
             event.params.value
@@ -68,6 +65,13 @@ export function handleTransfer(event: TransferEvent): void {
             contract.decimals
         );
         totalSupply.save();
+    } else if (event.params.to == ADDRESS_BURN) {
+        contract.burnedExact = contract.burnedExact.plus(event.params.value);
+        contract.burned = decimals.toDecimals(
+            contract.burnedExact,
+            contract.decimals
+        );
+        contract.save();
     } else {
         let to = fetchAccount(event.params.to);
         let balance = fetchERC20Balance(contract, to);
