@@ -4,7 +4,7 @@ import { IERC20 } from "../../generated/erc20/IERC20";
 
 import { constants } from "@amxx/graphprotocol-utils";
 
-import { fetchAccount } from "@openzeppelin/subgraphs/src/fetch/account";
+import { fetchAccount } from "./account";
 import {
     Account,
     ERC20Contract,
