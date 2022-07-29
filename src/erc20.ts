@@ -70,6 +70,17 @@ export function handleTransfer(event: TransferEvent): void {
             contract.decimals
         );
         burnedBalance.save();
+
+        // remove from total supply
+        let totalSupply = fetchERC20Balance(contract, null);
+        totalSupply.valueExact = totalSupply.valueExact.minus(
+            event.params.value
+        );
+        totalSupply.value = decimals.toDecimals(
+            totalSupply.valueExact,
+            contract.decimals
+        );
+        totalSupply.save();
     } else {
         let to = fetchAccount(event.params.to);
         let balance = fetchERC20Balance(contract, to);
