@@ -2,7 +2,10 @@ name: Deploy to Satsuma Service
 
 on:
     push:
-       branches: main
+       branches:
+          - 'main'
+       tags:
+         - "*"
 
 jobs:
     buildAndDeploy:
