@@ -4,8 +4,6 @@ on:
     push:
        branches:
           - 'main'
-       tags:
-         - "*"
 
 jobs:
     buildAndDeploy:
@@ -26,5 +24,9 @@ jobs:
               run: yarn build
             - name: Deploy to Satsuma
               run: |
-                  npx graph deploy --access-token ${{secrets.SATSUMA_ACCESS_TOKEN}} aavegotchi-alchemica subgraph.yaml --node https://app.satsuma.xyz/api/subgraphs/deploy --version-label ${GITHUB_REF#refs/*/}
+                  npx graph deploy aavegotchi-alchemica \
+                    --deploy-key ${{secrets.SATSUMA_ACCESS_TOKEN}} \
+                    --node https://subgraphs.alchemy.com/api/subgraphs/deploy \
+                    --ipfs https://ipfs.satsuma.xyz \
+                    --version-label ${GITHUB_SHA}
               shell: bash
