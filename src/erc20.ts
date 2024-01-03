@@ -31,7 +31,7 @@ export function handleTransfer(event: TransferEvent): void {
     event.params.to == constants.ADDRESS_ZERO ||
     event.params.to == ADDRESS_BURN
   ) {
-    let burnAccount = fetchAccount(ADDRESS_BURN);
+    let burnAccount = fetchAccount(event.params.to);
     let burnedBalance = fetchERC20Balance(contract, burnAccount);
 
     burnedBalance.valueExact = burnedBalance.valueExact.plus(
