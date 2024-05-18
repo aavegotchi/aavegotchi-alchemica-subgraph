@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "codegen": "graph codegen",
-    "build": "graph build"
+    "build": "graph build",
+    "codegen:testnet": "graph codegen subgraph.testnet.yaml",
+    "build:testnet": "graph build subgraph.testnet.yaml"
   },
   "keywords": [],
   "author": "",

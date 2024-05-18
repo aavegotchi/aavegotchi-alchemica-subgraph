@@ -1,0 +1,104 @@
+specVersion: 0.0.4
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: kek
+    network: polygon-amoy
+    source:
+      address: "0x9b39452041aCe85C03D3Ae76D0D5ccFf3a86dEc9"
+      abi: IERC20
+      startBlock: 5354182
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ERC20Contract
+      abis:
+        - name: IERC20
+          file: ./node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/erc20.ts
+  - kind: ethereum/contract
+    name: alpha
+    network: polygon-amoy
+    source:
+      address: "0x44bca9B7C2C5F9f47D4da5B72deCdcF3a42535d8"
+      abi: IERC20
+      startBlock: 5354181
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ERC20Contract
+      abis:
+        - name: IERC20
+          file: ./node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/erc20.ts
+  - kind: ethereum/contract
+    name: fomo
+    network: polygon-amoy
+    source:
+      address: "0x616d6Df54A9754B81aa43971794D86B3C229fA8B"
+      abi: IERC20
+      startBlock: 5354418
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ERC20Contract
+      abis:
+        - name: IERC20
+          file: ./node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/erc20.ts
+  - kind: ethereum/contract
+    name: fud
+    network: polygon-amoy
+    source:
+      address: "0xaa1C59f2B45EF192B71De7d0CB5d95b664749d9c"
+      abi: IERC20
+      startBlock: 5354179
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ERC20Contract
+      abis:
+        - name: IERC20
+          file: ./node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/erc20.ts
+  - kind: ethereum/contract
+    name: GLTR
+    network: polygon-amoy
+    source:
+      address: "0x7E4CB2bc361898bB17C8D847032676A7Fd23D625"
+      abi: IERC20
+      startBlock: 5975751
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ERC20Contract
+      abis:
+        - name: IERC20
+          file: ./node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/erc20.ts
