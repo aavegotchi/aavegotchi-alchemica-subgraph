@@ -1,0 +1,33 @@
+name: Deploy Base Network to Satsuma Service
+
+on:
+  push:
+    tags:
+      - "base-*"
+
+jobs:
+  buildAndDeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install Yarn
+        run: npm i -g yarn
+      - name: Install Libs
+        run: yarn --frozen-lockfile
+      - name: Codegen for Base
+        run: yarn codegen subgraph.base.yaml
+      - name: Build for Base
+        run: yarn build subgraph.base.yaml
+      - name: Deploy Base Network to Satsuma
+        run: |
+          npx graph deploy aavegotchi-alchemica-base \
+            --deploy-key ${{secrets.SATSUMA_ACCESS_TOKEN}} \
+            --node https://subgraphs.alchemy.com/api/subgraphs/deploy \
+            --ipfs https://ipfs.satsuma.xyz \
+            --version-label ${GITHUB_REF#refs/*/} \
+            subgraph.base.yaml
+        shell: bash
